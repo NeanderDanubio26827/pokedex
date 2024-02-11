@@ -76,7 +76,7 @@ export const Desafio = () => {
         };
       }));
       const sprites = response.data.sprites;
-      const spriteUrls = Object.values(sprites).filter((sprite: string | null ) => sprite !== null);
+      const spriteUrls = Object.values(sprites).filter((sprite): sprite is string => sprite !== null);
       setImages(spriteUrls as string[]);
       setMovesPokemon(moves);
     } catch (error) {
