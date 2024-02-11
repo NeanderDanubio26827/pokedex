@@ -30,7 +30,6 @@ export interface IPokemonInd extends IPokemonProps {
       power: number;
       type: {
         name: string;
-        url: string;
       }
     };
 }
@@ -91,7 +90,7 @@ export const Desafio = () => {
       const moveDetails = {
         accuracy: response.data.accuracy,
         power: response.data.power,
-        type: response.data.type.name,
+        type: response.data.type,
       };
       return moveDetails;
     } catch (error) {
