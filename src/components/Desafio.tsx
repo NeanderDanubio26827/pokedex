@@ -145,7 +145,7 @@ export const Desafio = () => {
               {movesPokemon.length > 0 && (
                 <Tr>
                   <TdTable text={`${movesPokemon[currentIndex].name}`} />
-                  <TdTable text={`${movesPokemon[currentIndex].details ? movesPokemon[currentIndex].details.accuracy : 'N/A'}`} />
+                  <TdTable text={`${movesPokemon[currentIndex].details ? `${movesPokemon[currentIndex].details.accuracy}` : 'N/A'}`} />
                   <TdTable text={`${movesPokemon[currentIndex].details ? movesPokemon[currentIndex].details.power : 'N/A'}`} />
                   <TdTable text={`${movesPokemon[currentIndex].details ? movesPokemon[currentIndex].details.type.name : 'N/A'}`} />
                 </Tr>
