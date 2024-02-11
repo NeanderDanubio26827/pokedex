@@ -1,9 +1,38 @@
 import axios from "axios";
-import { useState, FormEvent, ChangeEvent } from "react";
-import { IPokemonInd } from "./Pokemon";
-import { Button, Flex, Input, Table, TableCaption, TableContainer, Tbody, Thead, Tr, Image } from "@chakra-ui/react";
+import { useState, ChangeEvent } from "react";
+import { Button, Flex, Text, Input, Table, TableCaption, TableContainer, Tbody, Thead, Tr, Image } from "@chakra-ui/react";
 import { ThTable } from "./table/th";
 import { TdTable } from "./table/td";
+
+export interface IPokemonProps {
+  id: number;
+  name: string;
+  url: string;
+  next: string;
+}
+
+export interface IPokemonInd extends IPokemonProps { 
+    sprites: {
+        front_default: string;
+        back_default: string;
+        front_shiny: string;
+        back_shiny: string;
+    };
+    moves: {
+        move: {
+            name: string;
+            url: string;
+        }
+    }[];
+    details: {
+      accuracy: number;
+      power: number;
+      type: {
+        name: string;
+        url: string;
+      }
+    }[];
+}
 
 export const Desafio = () => {
   const [namePokemon, setNamePokemon] = useState<string>('');
@@ -73,16 +102,21 @@ export const Desafio = () => {
     <Flex align="center" justify="center" flexDirection="column" minHeight="100vh">
       <Flex direction="column" align="center" border="2px dashed red" w={400} h={600} justifyContent="space-around" borderRadius="20px">
         <Flex flexDirection="row" align="center" justify="center" gap={2}>
+          <Flex flexDirection={'row'} gap={2}>
           <Input
             name="namePokemon"
             value={namePokemon}
             onChange={handleChange}
             placeholder="Enter Pokemon name"
             w={300}
-          />
-          <Button onClick={handleFetchPokemonData}>Fetch</Button>
+            />
+          <Button onClick={handleFetchPokemonData}colorScheme="whatsapp" >Fetch</Button>
+          </Flex>
         </Flex>
-        {images.length > 0 && <Image src={images[currentIndexImg]} alt={`Sprite ${currentIndexImg}`} />}
+        <Flex flexDirection={'column'}>
+        <Text align={'center'}>Moves of <Text fontWeight={600}>{namePokemon}</Text></Text>
+        {images.length > 0 && <Image src={images[currentIndexImg]} boxSize={80} alt={`Sprite ${currentIndexImg}`} />}
+        </Flex>
         <TableContainer pt={4} transitionDuration="1.0s" border="1px solid rgba(234, 236, 240, 1)">
           <Table variant="simple">
             <TableCaption textAlign="left" p={0}>
@@ -90,10 +124,10 @@ export const Desafio = () => {
                 {currentIndex + 1} de {movesPokemon.length}
                 <Flex p={0} color="rgba(52, 64, 84, 1)">
                   <Button mr={2} fontSize="12px" fontWeight="none" bg="none" border="1px solid" borderColor="rgba(208, 213, 221, 1)" borderRadius="8px" color="rgba(52, 64, 84, 1)" onClick={handlePrevious}>
-                    Anterior
+                    Previous
                   </Button>
                   <Button ml={2} fontSize="12px" fontWeight="none" bg="none" border="1px solid" borderColor="rgba(208, 213, 221, 1)" color="rgba(52, 64, 84, 1)" borderRadius="8px" onClick={handleNext}>
-                    Próximo
+                    Next
                   </Button>
                 </Flex>
               </Flex>
