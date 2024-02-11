@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import axios from "axios";
 import { useState, ChangeEvent } from "react";
 import { Button, Flex, Text, Input, Table, TableCaption, TableContainer, Tbody, Thead, Tr, Image } from "@chakra-ui/react";
@@ -75,7 +76,7 @@ export const Desafio = () => {
         };
       }));
       const sprites = response.data.sprites;
-      const spriteUrls = Object.values(sprites).filter((sprite: string | null) => sprite !== null);
+      const spriteUrls = Object.values(sprites).filter((sprite: string | null ) => sprite !== null);
       setImages(spriteUrls as string[]);
       setMovesPokemon(moves);
     } catch (error) {
