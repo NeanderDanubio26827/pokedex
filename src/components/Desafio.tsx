@@ -79,6 +79,7 @@ export const Desafio = () => {
       const spriteUrls = Object.values(sprites).filter((sprite): sprite is string => sprite !== null);
       setImages(spriteUrls as string[]);
       setMovesPokemon(moves);
+      console.log(movesPokemon);
     } catch (error) {
       console.error('Error fetching Pokemon data:', error);
     }
@@ -90,7 +91,7 @@ export const Desafio = () => {
       const moveDetails = {
         accuracy: response.data.accuracy,
         power: response.data.power,
-        type: response.data.type,
+        type: response.data.type.name,
       };
       return moveDetails;
     } catch (error) {
@@ -145,8 +146,8 @@ export const Desafio = () => {
               {movesPokemon.length > 0 && (
                 <Tr>
                   <TdTable text={`${movesPokemon[currentIndex].name}`} />
-                  <TdTable text={`${movesPokemon[currentIndex].details ? `${movesPokemon[currentIndex].details.accuracy}` : 'N/A'}`} />
-                  <TdTable text={`${movesPokemon[currentIndex].details ? movesPokemon[currentIndex].details.power : 'N/A'}`} />
+                  <TdTable text={`${movesPokemon[currentIndex].details ? movesPokemon[currentIndex].details.accuracy : 0}`} />
+                  <TdTable text={`${movesPokemon[currentIndex].details ? movesPokemon[currentIndex].details.power : 0}`} />
                   <TdTable text={`${movesPokemon[currentIndex].details ? movesPokemon[currentIndex].details.type.name : 'N/A'}`} />
                 </Tr>
               )}
