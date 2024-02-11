@@ -32,7 +32,7 @@ export interface IPokemonInd extends IPokemonProps {
         name: string;
         url: string;
       }
-    }[];
+    };
 }
 
 export const Desafio = () => {
